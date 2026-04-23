@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T-Town Discounts | Get Into 2,500 Tulsa Homes for $199</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --green: #2e7d32;
+      --green-light: #43a047;
+      --green-dark: #1b5e20;
+      --black: #0a0a0a;
+      --off-white: #f5f0eb;
+      --tan: #e8ddd1;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background-color: var(--black);
+      color: var(--off-white);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .bebas { font-family: 'Bebas Neue', sans-serif; }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2.5rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(46,125,50,0.3);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      filter: drop-shadow(0 0 8px rgba(46,125,50,0.4));
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      color: var(--off-white);
+      line-height: 1;
+    }
+
+    .nav-logo-text span { color: var(--green-light); }
+
+    .nav-cta {
+      background: var(--green);
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+    .nav-cta:hover { background: var(--green-light); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-number {
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(14rem, 30vw, 28rem);
+      line-height: 1;
+      color: rgba(46,125,50,0.07);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--green-light);
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      margin: 0 0 1.5rem;
+      max-width: 14ch;
+    }
+
+    .hero h1 .accent { color: var(--green-light); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      color: rgba(245,240,235,0.75);
+      max-width: 52ch;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-sub strong { color: var(--off-white); font-weight: 700; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      box-shadow: 0 0 0 0 rgba(67,160,71,0);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(67,160,71,0.35);
+    }
+
+    .hero-stats {
+      margin-top: 3rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--green-light);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,235,0.5);
+      margin-top: 0.2rem;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: rgba(46,125,50,0.3);
+      align-self: stretch;
+    }
+
+    /* ── MAILER MOCKUP ── */
+    .mailer-section {
+      padding: 5rem 2.5rem;
+      background: #111;
+      border-top: 1px solid rgba(46,125,50,0.2);
+      border-bottom: 1px solid rgba(46,125,50,0.2);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      margin: 0 0 1rem;
+    }
+
+    .mailer-placeholder {
+      margin-top: 3rem;
+      width: 100%;
+      aspect-ratio: 11/6;
+      border: 2px dashed rgba(46,125,50,0.5);
+      background: rgba(46,125,50,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mailer-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(46,125,50,0.03) 0px,
+        rgba(46,125,50,0.03) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+    }
+
+    .mailer-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border: 2px solid rgba(46,125,50,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mailer-placeholder-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,240,235,0.3);
+    }
+
+    .mailer-placeholder-sub {
+      font-size: 0.8rem;
+      color: rgba(245,240,235,0.2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── MATH SECTION ── */
+    .math-section {
+      padding: 6rem 2.5rem;
+      background: var(--black);
+    }
+
+    .math-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 860px;
+      margin: 3rem auto 0;
+    }
+
+    @media (max-width: 640px) {
+      .math-grid { grid-template-columns: 1fr; }
+    }
+
+    .math-card {
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .math-card-diy {
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .math-card-us {
+      background: var(--green-dark);
+      border: 1px solid var(--green);
+    }
+
+    .math-card-us::after {
+      content: '★ BEST VALUE';
+      position: absolute;
+      top: 1.2rem;
+      right: -2.5rem;
+      background: var(--green-light);
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      padding: 0.3rem 3rem;
+      transform: rotate(45deg);
+    }
+
+    .math-card-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,235,0.5);
+      margin-bottom: 0.75rem;
+    }
+
+    .math-card-us .math-card-label { color: rgba(255,255,255,0.6); }
+
+    .math-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 5.5rem);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .math-card-diy .math-price { color: rgba(245,240,235,0.4); }
+    .math-card-us .math-price { color: #fff; }
+
+    .math-price-note {
+      font-size: 0.8rem;
+      color: rgba(245,240,235,0.5);
+      margin-bottom: 1.5rem;
+    }
+
+    .math-card-us .math-price-note { color: rgba(255,255,255,0.6); }
+
+    .math-items { list-style: none; padding: 0; margin: 0; }
+    .math-items li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: rgba(245,240,235,0.7);
+    }
+    .math-card-us .math-items li { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.1); }
+    .math-items li:last-child { border-bottom: none; }
+
+    .math-check { color: var(--green-light); font-size: 1rem; }
+    .math-x { color: #ef5350; font-size: 1rem; }
+    .math-card-us .math-check { color: #a5d6a7; }
+
+    .math-cta-row {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    /* ── EXCLUSIVITY ── */
+    .exclusivity-section {
+      padding: 6rem 2.5rem;
+      background: #0d0d0d;
+      border-top: 1px solid rgba(46,125,50,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exclusivity-section::before {
+      content: 'ONLY 1';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(8rem, 20vw, 18rem);
+      color: rgba(46,125,50,0.04);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .excl-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .excl-badge {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .excl-body {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(245,240,235,0.7);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .excl-body strong { color: var(--off-white); }
+
+    .industry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .industry-tag {
+      background: rgba(46,125,50,0.12);
+      border: 1px solid rgba(46,125,50,0.3);
+      color: rgba(245,240,235,0.65);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      padding: 6rem 2.5rem;
+      background: var(--black);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 960px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .about-quote {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      color: var(--green-light);
+      border-left: 3px solid var(--green);
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+
+    .about-text {
+      font-size: 1rem;
+      color: rgba(245,240,235,0.72);
+      line-height: 1.8;
+    }
+
+    .about-text p { margin: 0 0 1.2rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--off-white); }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      padding: 6rem 2.5rem;
+      background: #111;
+      border-top: 1px solid rgba(46,125,50,0.2);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 960px;
+      margin: 3rem auto 0;
+    }
+
+    .step {
+      padding: 2rem;
+      background: rgba(46,125,50,0.06);
+      border: 1px solid rgba(46,125,50,0.2);
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(46,125,50,0.25);
+      margin-bottom: 0.75rem;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--off-white);
+    }
+
+    .step-body {
+      font-size: 0.88rem;
+      color: rgba(245,240,235,0.55);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    .contact-section {
+      padding: 6rem 2.5rem 4rem;
+      background: var(--green-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(0,0,0,0.04) 0px,
+        rgba(0,0,0,0.04) 1px,
+        transparent 1px,
+        transparent 24px
+      );
+    }
+
+    .contact-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-inner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 3rem;
+    }
+
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-card {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 1.5rem 2rem;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .contact-card-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-card-val {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .contact-card-val a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .contact-card-val a:hover { text-decoration: underline; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ── FINAL CTA BANNER ── */
+    .cta-banner {
+      background: var(--black);
+      padding: 5rem 2.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(46,125,50,0.2);
+    }
+
+    .cta-banner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin: 0 0 1rem;
+      line-height: 1;
+    }
+
+    .cta-banner p {
+      font-size: 1rem;
+      color: rgba(245,240,235,0.6);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up { animation: fadeUp 0.7s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.55s; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--green-dark); }
+
+    .max-container { max-width: 1100px; margin: 0 auto; }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero, .mailer-section, .math-section, .exclusivity-section,
+      .about-section, .how-section, .contact-section, .cta-banner {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="td-logo.png" alt="T-Town Discounts Logo" onerror="this.style.display='none'">
+      <div class="nav-logo-text">T-Town <span>Discounts</span></div>
+    </a>
+    <a href="https://square.link/u/3fMcRH9e" target="_blank" rel="noopener" class="nav-cta">Claim Your Spot</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-number">$199</div>
+    <div class="max-container">
+      <div class="hero-eyebrow fade-up">
+        <img src="td-logo.png" alt="T-Town Discounts" style="height:36px; width:auto; filter:drop-shadow(0 0 10px rgba(67,160,71,0.5)); margin-right:0.5rem; vertical-align:middle;" onerror="this.style.display='none'">
+        Tulsa, Oklahoma · Shared Mailer Program
+      </div>
+      <h1 class="fade-up delay-1">
+        Get Into<br><span class="accent">2,500</span><br>Tulsa Homes<br>for <span class="accent">$199.</span>
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        We group <strong>16 local businesses</strong> onto one 6×11 community mailer.
+        You share the space, you share the cost, and
+        <strong>everyone wins.</strong>
+      </p>
+      <a href="https://square.link/u/3fMcRH9e" target="_blank" rel="noopener" class="btn-primary fade-up delay-3">Claim Your Spot Now</a>
+
+      <div class="hero-stats fade-up delay-4">
+        <div class="stat-item">
+          <div class="stat-num">2,500</div>
+          <div class="stat-label">Homes Reached</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">$199</div>
+          <div class="stat-label">Total Cost</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">8¢</div>
+          <div class="stat-label">Per Home</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">6×11</div>
+          <div class="stat-label">Inch Mailer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAILER MOCKUP -->
+  <section class="mailer-section">
+    <div class="max-container">
+      <div class="section-label">The Product</div>
+      <h2 class="section-title">See It in Action</h2>
+      <p style="color: rgba(245,240,235,0.6); font-size: 0.95rem; max-width: 52ch;">
+        A full-color, professionally printed 6×11 community card delivered by USPS direct to 2,500 Tulsa mailboxes. Your ad. Their door.
+      </p>
+
+      <div class="mailer-placeholder">
+        <div class="mailer-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(46,125,50,0.6)" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </div>
+        <div class="mailer-placeholder-text">6×11 Community Card Mockup</div>
+        <div class="mailer-placeholder-sub">Drop your image here</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE MATH -->
+  <section class="math-section" id="pricing">
+    <div class="max-container">
+      <div class="section-label">Do the Math</div>
+      <h2 class="section-title">Why Go Alone<br>When You Can Split?</h2>
+
+      <div class="math-grid">
+        <!-- DIY Card -->
+        <div class="math-card math-card-diy">
+          <div class="math-card-label">Doing It Yourself</div>
+          <div class="math-price">$2,000<span style="font-size:2rem;">+</span></div>
+          <div class="math-price-note">Just to reach 2,500 homes once</div>
+          <ul class="math-items">
+            <li><span class="math-x">✕</span> Design fees ($300–$500)</li>
+            <li><span class="math-x">✕</span> Print costs ($600–$900)</li>
+            <li><span class="math-x">✕</span> USPS postage ($700–$900)</li>
+            <li><span class="math-x">✕</span> Weeks of coordination</li>
+            <li><span class="math-x">✕</span> You carry all the risk</li>
+          </ul>
+        </div>
+
+        <!-- T-Town Card -->
+        <div class="math-card math-card-us">
+          <div class="math-card-label">T-Town Shared Space</div>
+          <div class="math-price">$199</div>
+          <div class="math-price-note">Only 8 cents per home. That's it.</div>
+          <ul class="math-items">
+            <li><span class="math-check">✓</span> Design included</li>
+            <li><span class="math-check">✓</span> Printing included</li>
+            <li><span class="math-check">✓</span> USPS delivery included</li>
+            <li><span class="math-check">✓</span> We handle everything</li>
+            <li><span class="math-check">✓</span> Cost shared across 16 businesses</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="math-cta-row">
+        <a href="https://square.link/u/3fMcRH9e" target="_blank" rel="noopener" class="btn-primary">Lock In $199 Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVITY -->
+  <section class="exclusivity-section" id="exclusivity">
+    <div class="excl-inner">
+      <span class="excl-badge">Protected Spots</span>
+      <h2 class="section-title" style="margin-bottom: 1.5rem;">One Industry.<br>One Business.<br>Every Card.</h2>
+      <p class="excl-body">
+        We keep it <strong>fair and powerful.</strong> On every mailer, we allow
+        <strong>only one business per industry.</strong> One roofer. One plumber.
+        One salon. One HVAC company. Your competitors don't get on the card while you're on it.
+        That's not just a policy — it's your competitive edge.
+      </p>
+      <div class="industry-tags">
+        <span class="industry-tag">Roofing</span>
+        <span class="industry-tag">Plumbing</span>
+        <span class="industry-tag">HVAC</span>
+        <span class="industry-tag">Auto Repair</span>
+        <span class="industry-tag">Lawn Care</span>
+        <span class="industry-tag">Salon / Barber</span>
+        <span class="industry-tag">Pest Control</span>
+        <span class="industry-tag">Dentist</span>
+        <span class="industry-tag">Chiropractor</span>
+        <span class="industry-tag">Restaurants</span>
+        <span class="industry-tag">Cleaning Services</span>
+        <span class="industry-tag">Real Estate</span>
+        <span class="industry-tag">+ More</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="max-container">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Claim Your Spot</div>
+          <div class="step-body">Call or email Garrett. Tell us your business and industry. We verify no conflict exists on the current card.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Send Your Info</div>
+          <div class="step-body">Share your business name, offer/deal, logo, and contact info. Keep it simple — we do the design work.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">We Handle the Rest</div>
+          <div class="step-body">We design, print, and mail the 6×11 community card via USPS to 2,500 Tulsa homes on your behalf.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Phones Ring</div>
+          <div class="step-body">Your offer lands in 2,500 mailboxes. Physical mail gets seen. Customers call. Simple as that.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="max-container">
+      <div class="about-grid">
+        <blockquote class="about-quote">
+          "Power in Numbers. Tulsa's Small Shops vs. Big Box."
+        </blockquote>
+        <div class="about-text">
+          <p>
+            We're not a national corporation with a call center in another state. We're local — right here in Tulsa —
+            and we built T-Town Discounts because we watched small businesses get squeezed out by companies with massive
+            marketing budgets.
+          </p>
+          <p>
+            <strong>The playing field doesn't have to be uneven.</strong> When 16 local businesses pool their resources
+            onto one card, each of you gets the kind of reach that used to cost thousands. That's the whole idea.
+            Neighbors helping neighbors compete.
+          </p>
+          <p>
+            No long contracts. No confusing packages. Just a flat $199, your ad in 2,500 homes, and a fair shot
+            at the Tulsa market you've been working hard to earn.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA BANNER -->
+  <section class="cta-banner">
+    <div class="max-container">
+      <h2>Spots Fill Fast.<br><span style="color: var(--green-light);">Don't Miss This Card.</span></h2>
+      <p>Once your industry is taken, it's taken. Secure your exclusive spot today.</p>
+      <a href="https://square.link/u/3fMcRH9e" target="_blank" rel="noopener" class="btn-primary">Claim Your Spot — $199</a>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="section-label" style="color: rgba(255,255,255,0.5);">Ready to Get Started?</div>
+      <h2>Let's Talk.<br>It Takes 5 Minutes.</h2>
+      <p class="contact-sub">
+        Reach out to Garrett directly. No runaround, no voicemail maze. Just a real conversation about getting your business in front of Tulsa.
+      </p>
+
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-card-label">Your Contact</div>
+          <div class="contact-card-val">Garrett Sledge</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-val"><a href="tel:4798562240">479-856-2240</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-val"><a href="mailto:garrettsledge@ttowndiscounts.com">garrettsledge@ttowndiscounts.com</a></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-logo" style="display:flex; align-items:center; gap:0.6rem;">
+          <img src="td-logo.png" alt="T-Town Discounts" style="height:32px; width:auto; filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(255,255,255,0.2));" onerror="this.style.display='none'">
+          T-Town Discounts
+        </div>
+        <div class="footer-copy">© 2025 T-Town Discounts · Tulsa, OK · All Rights Reserved</div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
